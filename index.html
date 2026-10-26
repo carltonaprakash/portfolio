@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carlton Anthony Prakash | IT Support & Operations</title>
+<style>
+:root{--bg:#141414;--card:#2a2a2a;--text:#f2f2f2;--mute:#b3b3b3;--red:#e50914;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Helvetica Neue",Arial,sans-serif;line-height:1.5}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;align-items:center;gap:20px;padding:14px 4vw;background:linear-gradient(var(--bg),rgba(20,20,20,.85));overflow-x:auto}
+.logo{color:var(--red);font-weight:900;font-size:1.5rem;letter-spacing:1px;margin-right:12px;white-space:nowrap}
+nav a{color:var(--mute);text-decoration:none;font-size:.9rem;white-space:nowrap}
+nav a:hover,nav a:focus-visible{color:var(--text);outline:none}
+.hero{min-height:70vh;display:flex;flex-direction:column;justify-content:center;padding:8vh 4vw;background:linear-gradient(90deg,#141414 30%,rgba(20,20,20,.2)),radial-gradient(circle at 80% 30%,#5c0a10,#141414 70%)}
+.hero h1{font-size:clamp(2.4rem,7vw,4.5rem);margin:0 0 8px;line-height:1.05;max-width:12ch}
+.meta{color:#46d369;font-weight:700;margin:0 0 14px}
+.meta span{color:var(--mute);font-weight:400;margin-left:10px}
+.hero p{max-width:55ch;font-size:1.1rem;color:#ddd;margin:0 0 24px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:12px 26px;border-radius:4px;font-weight:700;text-decoration:none;font-size:1rem}
+.play{background:#fff;color:#000}.info{background:rgba(109,109,110,.7);color:#fff}
+.btn:hover,.btn:focus-visible{opacity:.8;outline:2px solid #fff}
+section{padding:20px 0 10px}
+h2{font-size:1.25rem;margin:0 4vw 10px}
+.row{display:flex;gap:10px;overflow-x:auto;padding:8px 4vw 24px;scroll-snap-type:x proximity}
+.card{flex:0 0 min(260px,70vw);min-height:150px;scroll-snap-align:start;background:var(--card);border-radius:6px;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;transition:transform .2s}
+.card:hover,.card:focus-within{transform:scale(1.06);z-index:2}
+.card::before{content:"";position:absolute;inset:0;background:var(--g);opacity:.9}
+.card>*{position:relative}
+.card h3{margin:0 0 4px;font-size:1.05rem}
+.card p{margin:0;font-size:.85rem;color:#ddd}
+.tag{font-size:.7rem;font-weight:700;color:#fff;background:var(--red);padding:2px 6px;border-radius:2px;align-self:flex-start;margin-bottom:auto}
+.a{--g:linear-gradient(135deg,#b20710,#3a0306)}.b{--g:linear-gradient(135deg,#0f4c81,#07203a)}.c{--g:linear-gradient(135deg,#1f6f4a,#0a2a1c)}.d{--g:linear-gradient(135deg,#6a3a9c,#26123d)}.e{--g:linear-gradient(135deg,#a8651b,#3a2208)}
+a.card{color:inherit;text-decoration:none}
+.card.wide{flex-basis:min(400px,82vw)}
+.card.wide p{margin-bottom:6px}
+.card .hint{font-size:.8rem;color:#fff;font-weight:700}
+footer{padding:40px 4vw 60px;color:var(--mute);font-size:.85rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+body:not(.in) #site{display:none}
+#splash,#profiles{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:env(safe-area-inset-top,0px) 4vw env(safe-area-inset-bottom,0px);background:#000}
+#profiles{background:var(--bg);display:none;text-align:center}
+#splash.gone{opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}
+.splash-logo{color:var(--red);font-weight:900;font-size:clamp(2.2rem,11vw,6rem);letter-spacing:.08em;opacity:0}
+#splash.go .splash-logo{animation:zoom 2.6s ease-in forwards}
+#splash.go #start{display:none}
+#start{border:0;cursor:pointer;margin-top:28px}
+@keyframes zoom{0%{transform:scale(.6);opacity:0}25%{opacity:1}80%{opacity:1}100%{transform:scale(1.7);opacity:0}}
+.skip{position:absolute;right:4vw;bottom:calc(24px + env(safe-area-inset-bottom,0px));background:none;border:1px solid #555;color:var(--mute);padding:8px 14px;border-radius:4px;cursor:pointer;font-size:.85rem}
+.skip:hover,.skip:focus-visible{color:#fff;border-color:#fff}
+#profiles h1{font-size:clamp(1.8rem,5vw,3.2rem);font-weight:500;margin:0 0 32px}
+.plist{display:flex;gap:clamp(12px,3vw,32px);flex-wrap:wrap;justify-content:center}
+.pf{background:none;border:0;color:var(--mute);cursor:pointer;font-size:clamp(.9rem,1.6vw,1.2rem);width:clamp(84px,20vw,150px)}
+.pf svg{display:block;width:100%;aspect-ratio:1;border-radius:6px;border:3px solid transparent;margin-bottom:10px}
+.pf:hover,.pf:focus-visible{color:#fff;outline:none}
+.pf:hover svg,.pf:focus-visible svg{border-color:#fff}
+#profiles.show{display:flex;animation:fin .5s}
+@keyframes fin{from{opacity:0}to{opacity:1}}
+</style>
+</head>
+<body>
+<div id="splash"><div class="splash-logo">CARLTON</div><button class="btn play" id="start">Open portfolio</button><button class="skip" id="skip">Skip intro</button></div>
+<div id="profiles"><h1>Who’s watching?</h1><div class="plist" id="plist"></div></div>
+<div id="site">
+<nav><span class="logo">CARLTON</span><a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#certs">Certifications</a><a href="#contact">Contact</a></nav>
+
+<header class="hero" id="about">
+<p class="meta">Open to work<span>BCA 2026 &nbsp;|&nbsp; IT Support &amp; Operations</span></p>
+<h1>Carlton Anthony Prakash</h1>
+<p>BCA student at Voorhees College (2023–2026) focused on IT Support and IT Operations. I keep people working by solving their tech problems clearly and calmly.</p>
+<div class="btns"><a class="btn play" href="#contact">Hire me</a><a class="btn info" href="#projects">See my work</a></div>
+</header>
+
+<section id="skills"><h2>Top skills for you</h2>
+<div class="row">
+<div class="card a"><span class="tag">SUPPORT</span><h3>Troubleshooting</h3><p>Finding the cause of a problem and fixing it.</p></div>
+<div class="card b"><span class="tag">TOOLS</span><h3>MS Office Suite</h3><p>Word, Excel and PowerPoint. Also Canva, Git and VS Code.</p></div>
+<div class="card c"><span class="tag">DATABASES</span><h3>MySQL and Access</h3><p>MySQL, Microsoft Access and SQL queries.</p></div>
+<div class="card d"><span class="tag">PROGRAMMING</span><h3>Python, C++ and C</h3><p>Plus basic HTML.</p></div>
+<div class="card e"><span class="tag">FUNCTIONAL</span><h3>Planning and Teamwork</h3><p>Time management, task delegation, project planning and Agile awareness.</p></div>
+<div class="card a"><span class="tag">LANGUAGES</span><h3>Four languages</h3><p>English and Hindi (fluent). Kannada and Tamil (conversational).</p></div>
+</div></section>
+
+<section id="experience"><h2>Continue watching: experience</h2>
+<div class="row">
+<div class="card a"><span class="tag">INTERNSHIP</span><h3>Data Science Intern, AdroIT Technologies</h3><p>Cleaned, organised and validated data in databases, and worked with a team on real projects. Oracle University, Naan Mudhalvan program.</p></div>
+<div class="card b"><span class="tag">EDUCATION</span><h3>BCA, Voorhees College</h3><p>2023 to 2026</p></div>
+</div></section>
+
+<section id="projects"><h2>Trending projects</h2>
+<div class="row">
+<a class="card wide a" href="https://carltonaprakash.github.io/syncdesk-itsm-demo/" target="_blank" rel="noopener"><span class="tag">LIVE DEMO</span><h3>SyncDesk: ServiceNow + Jira workflow</h3><p>A service desk demo that joins ServiceNow-style incident handling with Jira-style issue tracking in one employee website. An L1 agent can escalate an incident to a linked Jira issue, and the status syncs back automatically. Includes a dashboard, ticket queue, SLA heatmap, ticket ageing and notifications.</p><p>Demo login: admin / admin</p><span class="hint">Open the demo</span></a>
+<a class="card wide b" href="https://claude.ai/artifact/P7Y6xFVHR2RaYDnJdYnMn7" target="_blank" rel="noopener"><span class="tag">DOCUMENT</span><h3>SyncDesk: Project Overview</h3><p>The problem, how ServiceNow and Jira compare, the workflow, features, SLA rules, scope and next steps for the SyncDesk project.</p><span class="hint">Read the overview</span></a>
+<div class="card c"><span class="tag">NEW</span><h3>IT Service Desk &amp; Troubleshooting Knowledge Base</h3><p>Common issues with clear fixes.</p></div>
+<a class="card d" href="https://carlton-prakash.tiiny.site/"><span class="tag">WEB</span><h3>Portfolio Site</h3><p>My one-page IT Support portfolio.</p></a>
+</div></section>
+
+<section id="certs"><h2>Certifications</h2>
+<div class="row">
+<div class="card a"><span class="tag">ORACLE</span><h3>Oracle Database Foundation</h3><p>AdroIT</p></div>
+<div class="card b"><span class="tag">CAMBRIDGE</span><h3>English Language Communication</h3><p>Cambridge</p></div>
+<div class="card c"><span class="tag">INFOSYS</span><h3>Object Oriented Programming using Python</h3><p>Infosys Springboard, Sep 2024</p></div>
+<div class="card d"><span class="tag">INFOSYS</span><h3>Python for Data Science</h3><p>Infosys Springboard, Feb 2025</p></div>
+<div class="card e"><span class="tag">INFOSYS</span><h3>Introduction to Data Science</h3><p>Infosys Springboard, Feb 2025</p></div>
+<div class="card a"><span class="tag">INFOSYS</span><h3>Explore Machine Learning using Python</h3><p>Infosys Springboard, Feb 2025</p></div>
+<div class="card b"><span class="tag">INFOSYS</span><h3>Exploratory Data Analysis</h3><p>Infosys Springboard, Mar 2025</p></div>
+<div class="card c"><span class="tag">INFOSYS</span><h3>Data Visualisation using Python</h3><p>Infosys Springboard, Mar 2025</p></div>
+</div></section>
+
+<section id="contact"><h2>Contact</h2>
+<div class="row">
+<a class="card a" href="mailto:Carltonaprakash@gmail.com"><span class="tag">EMAIL</span><h3>Send an email</h3><p>Carltonaprakash@gmail.com</p></a>
+<a class="card b" href="https://www.linkedin.com/in/carltonaprakash"><span class="tag">LINKEDIN</span><h3>Connect with me</h3><p>linkedin.com/in/carltonaprakash</p></a>
+</div></section>
+
+<footer>© 2026 Carlton Anthony Prakash</footer>
+</div>
+<script>
+(function(){
+var P=[["Recruiter","#e50914"],["Hiring Manager","#0f7bc4"],["Fellow Techie","#2e9e5b"],["Guest","#e0a31b"]];
+var list=document.getElementById("plist"),splash=document.getElementById("splash"),prof=document.getElementById("profiles"),shown=false;
+P.forEach(function(p){
+var b=document.createElement("button");b.className="pf";
+b.innerHTML='<svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="'+p[1]+'"/><circle cx="33" cy="40" r="6" fill="#fff"/><circle cx="67" cy="40" r="6" fill="#fff"/><path d="M26 62 Q50 84 74 62" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/></svg>'+p[0];
+b.onclick=function(){prof.classList.remove("show");document.body.classList.add("in");window.scrollTo(0,0)};
+list.appendChild(b);
+});
+function showProfiles(){if(shown)return;shown=true;splash.classList.add("gone");prof.classList.add("show");list.firstChild.focus()}
+function sound(){try{var C=new (window.AudioContext||window.webkitAudioContext)(),t=C.currentTime;
+function n(f,s,d,v){var o=C.createOscillator(),g=C.createGain();o.type="sine";o.frequency.setValueAtTime(f,s);o.frequency.exponentialRampToValueAtTime(f*.7,s+d);g.gain.setValueAtTime(.0001,s);g.gain.exponentialRampToValueAtTime(v,s+.03);g.gain.exponentialRampToValueAtTime(.0001,s+d);o.connect(g);g.connect(C.destination);o.start(s);o.stop(s+d)}
+n(110,t,.5,.6);n(220,t,.4,.2);n(98,t+.55,1.9,.7);n(49,t+.55,1.9,.7);n(196,t+.55,1.5,.18)}catch(e){}}
+document.getElementById("start").onclick=function(){splash.classList.add("go");sound();setTimeout(showProfiles,2700)};
+document.getElementById("skip").onclick=showProfiles;
+})();
+</script>
+</body>
+</html>
