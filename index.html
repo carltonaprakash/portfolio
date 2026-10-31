@@ -4,17 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Carlton Anthony Prakash | IT Support & Operations</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700;800&display=swap">
 <style>
 :root{--bg:#141414;--card:#2a2a2a;--text:#f2f2f2;--mute:#b3b3b3;--red:#e50914;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:"Helvetica Neue",Arial,sans-serif;line-height:1.5}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Helvetica Neue",Arial,sans-serif;line-height:1.5}
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;align-items:center;gap:20px;padding:14px 4vw;background:linear-gradient(var(--bg),rgba(20,20,20,.85));overflow-x:auto}
 .logo{color:var(--red);font-weight:900;font-size:1.5rem;letter-spacing:1px;margin-right:12px;white-space:nowrap}
 nav a{color:var(--mute);text-decoration:none;font-size:.9rem;white-space:nowrap}
 nav a:hover,nav a:focus-visible{color:var(--text);outline:none}
 .hero{min-height:70vh;display:flex;flex-direction:column;justify-content:center;padding:8vh 4vw;background:linear-gradient(90deg,#141414 30%,rgba(20,20,20,.2)),radial-gradient(circle at 80% 30%,#5c0a10,#141414 70%)}
-.hero h1{font-size:clamp(2.4rem,7vw,4.5rem);margin:0 0 8px;line-height:1.05;max-width:12ch}
+.hero{position:relative;overflow:hidden}
+.hero>*:not(.bg){position:relative;z-index:2}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#141414 22%,rgba(20,20,20,.6) 60%,rgba(20,20,20,.25)),linear-gradient(transparent 55%,#141414)}
+.bg{position:absolute;inset:-25% -10%;display:flex;flex-direction:column;gap:14px;transform:rotate(-8deg);z-index:0;opacity:.6;pointer-events:none}
+.bg .r{display:flex;gap:14px}.bg .r:nth-child(2){margin-left:-90px}.bg .r:nth-child(3){margin-left:-30px}
+.t{flex:0 0 clamp(120px,16vw,200px);height:clamp(70px,10vw,110px);border-radius:6px;background:var(--g);display:flex;align-items:flex-end;padding:8px 10px;font-weight:700;font-size:.9rem;color:#fff}
+.hero h1{font-size:clamp(2.4rem,7vw,4.5rem);margin:0 0 8px;line-height:1.05}
 .meta{color:#46d369;font-weight:700;margin:0 0 14px}
 .meta span{color:var(--mute);font-weight:400;margin-left:10px}
 .hero p{max-width:55ch;font-size:1.1rem;color:#ddd;margin:0 0 24px}
@@ -37,17 +44,30 @@ a.card{color:inherit;text-decoration:none}
 .card.wide{flex-basis:min(400px,82vw)}
 .card.wide p{margin-bottom:6px}
 .card .hint{font-size:.8rem;color:#fff;font-weight:700}
+#site{display:flex;flex-direction:column}
+.sw{margin-left:auto;background:none;border:1px solid #555;color:var(--mute);padding:6px 12px;border-radius:4px;cursor:pointer;font-size:.85rem;white-space:nowrap;font-family:inherit}
+.sw:hover,.sw:focus-visible{color:#fff;border-color:#fff;outline:none}
+#note{display:none}#note.on{display:block}
+#note .quote{border-left:3px solid var(--red);padding-left:16px}
 footer{padding:40px 4vw 60px;color:var(--mute);font-size:.85rem}
+.about{padding:36px 4vw 8px;max-width:72ch}.about h2{margin:0 0 12px}.about p{margin:0 0 14px;line-height:1.75;color:#ddd;font-size:1.05rem}.about .tip{color:var(--mute);font-size:.9rem}
+#modal{position:fixed;inset:0;z-index:30;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.75);padding:20px}#modal.open{display:flex}
+.mbox{background:#181818;border-radius:8px;max-width:520px;width:100%;padding:28px;max-height:85vh;overflow-y:auto}.mbox h3{margin:0 0 12px;font-size:1.3rem}.mbox p{margin:0 0 20px;line-height:1.75;color:#ddd}.mbox button{background:#fff;color:#000;border:0;border-radius:4px;padding:10px 22px;font-weight:700;cursor:pointer}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 body:not(.in) #site{display:none}
 #splash,#profiles{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:env(safe-area-inset-top,0px) 4vw env(safe-area-inset-bottom,0px);background:#000}
 #profiles{background:var(--bg);display:none;text-align:center}
 #splash.gone{opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}
-.splash-logo{color:var(--red);font-weight:900;font-size:clamp(2.2rem,11vw,6rem);letter-spacing:.08em;opacity:0}
+.splash-logo{color:var(--red);font-weight:900;font-family:Anton,Impact,"Arial Narrow",sans-serif;font-weight:400;font-size:clamp(2.2rem,9vw,5.5rem);letter-spacing:.06em;opacity:0;position:relative;text-align:center;padding:0 4vw;line-height:1.05}
+.splash-logo::before,.splash-logo::after{content:attr(data-text);position:absolute;left:0;right:0;top:0;padding:0 4vw;text-align:center;opacity:0;mix-blend-mode:screen}
+#splash.go .splash-logo::before{color:#0ff;animation:gl1 2.6s steps(1) forwards}
+#splash.go .splash-logo::after{color:#f0f;animation:gl2 2.6s steps(1) forwards}
+@keyframes gl1{0%,100%{opacity:0}18%{opacity:.9;transform:translate(-7px,0);clip-path:inset(10% 0 60% 0)}28%{opacity:.9;transform:translate(7px,2px);clip-path:inset(55% 0 15% 0)}38%{opacity:0}58%{opacity:.9;transform:translate(-9px,0);clip-path:inset(30% 0 40% 0)}68%{opacity:0}84%{opacity:.8;transform:translate(6px,0);clip-path:inset(65% 0 5% 0)}90%{opacity:0}}
+@keyframes gl2{0%,100%{opacity:0}22%{opacity:.9;transform:translate(8px,0);clip-path:inset(45% 0 30% 0)}32%{opacity:0}52%{opacity:.9;transform:translate(-6px,-2px);clip-path:inset(5% 0 70% 0)}62%{opacity:.9;transform:translate(9px,0);clip-path:inset(60% 0 10% 0)}72%{opacity:0}80%{opacity:.8;transform:translate(-7px,0);clip-path:inset(20% 0 50% 0)}88%{opacity:0}}
 #splash.go .splash-logo{animation:zoom 2.6s ease-in forwards}
 #splash.go #start{display:none}
 #start{border:0;cursor:pointer;margin-top:28px}
-@keyframes zoom{0%{transform:scale(.6);opacity:0}25%{opacity:1}80%{opacity:1}100%{transform:scale(1.7);opacity:0}}
+@keyframes zoom{0%{transform:scale(.9);opacity:0}15%{opacity:1}30%{transform:scale(1) skewX(-8deg)}33%{transform:scale(1) skewX(6deg)}36%{transform:scale(1) skewX(0)}80%{opacity:1}100%{transform:scale(1.15);opacity:0}}
 .skip{position:absolute;right:4vw;bottom:calc(24px + env(safe-area-inset-bottom,0px));background:none;border:1px solid #555;color:var(--mute);padding:8px 14px;border-radius:4px;cursor:pointer;font-size:.85rem}
 .skip:hover,.skip:focus-visible{color:#fff;border-color:#fff}
 #profiles h1{font-size:clamp(1.8rem,5vw,3.2rem);font-weight:500;margin:0 0 32px}
@@ -58,22 +78,75 @@ body:not(.in) #site{display:none}
 .pf:hover svg,.pf:focus-visible svg{border-color:#fff}
 #profiles.show{display:flex;animation:fin .5s}
 @keyframes fin{from{opacity:0}to{opacity:1}}
+.splash-logo::before,.splash-logo::after{display:none}
+#splash{overflow:hidden}
+#splash.go .splash-logo{opacity:1;z-index:2;animation:tz 4.3s ease-in forwards}
+@keyframes tz{0%,72%{transform:scale(1);opacity:1;filter:blur(0)}100%{transform:scale(2.4);opacity:0;filter:blur(8px)}}
+.splash-logo .w{display:inline-block;white-space:nowrap;margin:0 .14em}
+.splash-logo .l{display:inline-block;opacity:0;transform:translateY(24px) scale(1.5);filter:blur(10px);text-shadow:0 0 28px rgba(229,9,20,.95)}
+#splash.go .splash-logo .l{animation:lin .6s ease-out forwards;animation-delay:calc(var(--i)*60ms + 800ms)}
+@keyframes lin{to{opacity:1;transform:none;filter:blur(0)}}
+.streaks{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;gap:7px;opacity:0;z-index:1;pointer-events:none}
+.streaks span{width:3px;background:linear-gradient(transparent,var(--c),transparent);border-radius:2px}
+#splash.go .streaks{animation:sk 1.8s ease-out .2s forwards}
+@keyframes sk{0%{opacity:0;transform:scaleX(.15)}25%{opacity:1}100%{opacity:0;transform:scaleX(3.2)}}
+#splash.go::before{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(229,9,20,.55),transparent 55%);opacity:0;animation:fl 2.6s ease-out .4s forwards}
+@keyframes fl{0%{opacity:0;transform:scale(.4)}30%{opacity:1}100%{opacity:0;transform:scale(1.7)}}
+#splash.go .splash-logo{animation:tz 5s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes tz{0%,78%{transform:scale(1);opacity:1;filter:blur(0)}100%{transform:scale(1.9);opacity:0;filter:blur(6px)}}
+.splash-logo .l{transform:translateY(12px) scale(1.2);filter:blur(6px)}
+#splash.go .splash-logo .l{animation:lin .9s cubic-bezier(.22,1,.36,1) forwards;animation-delay:calc(var(--i)*70ms + 900ms)}
+#splash.go .streaks{animation:sk 2.6s ease-in-out .2s forwards}
+@keyframes sk{0%{opacity:0;transform:scaleX(.2)}35%{opacity:.9}100%{opacity:0;transform:scaleX(2.6)}}
+#splash.go::before{animation:fl 3.2s ease-in-out .3s forwards}
+@keyframes fl{0%{opacity:0;transform:scale(.6)}40%{opacity:1}100%{opacity:0;transform:scale(1.5)}}
+#splash.gone{transition:opacity .9s ease,visibility .9s}
+#profiles.show{animation:fin .9s ease}
+.cap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:Anton,Impact,"Arial Narrow",sans-serif;font-size:clamp(5rem,28vw,17rem);letter-spacing:.04em;color:var(--red);opacity:0;z-index:2;text-shadow:0 0 40px rgba(229,9,20,.8);pointer-events:none}
+.cap::before,.cap::after{content:attr(data-text);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;mix-blend-mode:screen}
+.cap::before{color:#0ff}.cap::after{color:#f0f}
+#splash.go .cap{animation:capA 2.3s linear forwards}
+#splash.go .cap::before{animation:gl1 .8s steps(1) 1.4s forwards}
+#splash.go .cap::after{animation:gl2 .8s steps(1) 1.4s forwards}
+@keyframes capA{0%{opacity:0;transform:scale(.8);filter:blur(10px)}22%{opacity:1;transform:scale(1);filter:blur(0)}60%{opacity:1;transform:scale(1.04)}63%{transform:scale(1.04) skewX(-10deg)}66%{transform:scale(1) skewX(8deg);opacity:.7}70%{transform:scale(1.06) skewX(0);opacity:1}76%{transform:translateX(-10px) skewX(6deg);opacity:.6}80%{transform:translateX(8px) scale(1.1);opacity:1}86%{opacity:.5;transform:scale(1.2);filter:blur(2px)}100%{opacity:0;transform:scale(1.5);filter:blur(10px)}}
+#splash.go .splash-logo{animation:tz 5s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes tz{0%,78%{transform:scale(1);opacity:1;filter:blur(0)}100%{transform:scale(1.9);opacity:0;filter:blur(6px)}}
+#splash.go .splash-logo .l{animation:lin .9s cubic-bezier(.22,1,.36,1) forwards;animation-delay:calc(var(--i)*70ms + 900ms)}
+#splash.go::after{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(229,9,20,.45),transparent 55%);opacity:0;animation:fl 2.8s ease-in-out .6s forwards}
+.logo{font-family:Anton,Impact,"Arial Narrow",sans-serif;font-weight:400;font-size:1.8rem;letter-spacing:.04em;line-height:1}
+.hero h1{font-family:Anton,Impact,"Arial Narrow",sans-serif;font-weight:400;letter-spacing:.03em;font-size:clamp(3.4rem,11vw,7rem);line-height:.95}
+h2,.card h3,.mbox h3{font-weight:700;letter-spacing:-.01em}
+#profiles h1{font-weight:500}
+.btn,.tag,.sw,.skip,.pf{font-family:inherit}
+.hero h1{background:linear-gradient(#ff3b45 10%,#e50914 55%,#a10610);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#e50914;letter-spacing:.015em;filter:drop-shadow(0 0 18px rgba(229,9,20,.45))}
+.logo{filter:drop-shadow(0 0 8px rgba(229,9,20,.5))}
 </style>
 </head>
 <body>
-<div id="splash"><div class="splash-logo">CARLTON</div><button class="btn play" id="start">Open portfolio</button><button class="skip" id="skip">Skip intro</button></div>
+<div id="splash">
+<div class="splash-logo" data-text="CARLTON">CARLTON</div><button class="btn play" id="start">Open portfolio</button><button class="skip" id="skip">Skip intro</button></div>
 <div id="profiles"><h1>Who’s watching?</h1><div class="plist" id="plist"></div></div>
 <div id="site">
-<nav><span class="logo">CARLTON</span><a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#certs">Certifications</a><a href="#contact">Contact</a></nav>
+<nav><span class="logo">CARLTON</span><a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#certs">Certifications</a><a href="#contact">Contact</a><button class="sw" id="switch" type="button">Switch profile</button></nav>
 
 <header class="hero" id="about">
-<p class="meta">Open to work<span>BCA 2026 &nbsp;|&nbsp; IT Support &amp; Operations</span></p>
-<h1>Carlton Anthony Prakash</h1>
-<p>BCA student at Voorhees College (2023–2026) focused on IT Support and IT Operations. I keep people working by solving their tech problems clearly and calmly.</p>
+<div class="bg" aria-hidden="true">
+<div class="r"><div class="t a">Python</div><div class="t b">SQL</div><div class="t c">SyncDesk</div><div class="t d">MySQL</div><div class="t e">Troubleshooting</div><div class="t a">Git</div><div class="t b">Service Desk</div></div>
+<div class="r"><div class="t d">Oracle</div><div class="t e">MS Office</div><div class="t a">Attendance System</div><div class="t c">C++</div><div class="t b">Canva</div><div class="t d">ASP.NET</div><div class="t e">Infosys</div></div>
+<div class="r"><div class="t c">Stock Prediction</div><div class="t a">Data Science</div><div class="t e">VS Code</div><div class="t b">Jira</div><div class="t d">ServiceNow</div><div class="t c">Cambridge</div><div class="t a">Hindi, Tamil</div></div>
+</div>
+<p class="meta">Open to work<span id="metaspan">BCA 2026 &nbsp;|&nbsp; IT Support &amp; Operations</span></p>
+<h1>Carlton Anthony<br>Prakash</h1>
+<p>BCA student at Voorhees College (2023–2026) focused on IT Support and IT Operations. I like helping people get back to work, and I explain fixes in plain words.</p>
 <div class="btns"><a class="btn play" href="#contact">Hire me</a><a class="btn info" href="#projects">See my work</a></div>
 </header>
 
-<section id="skills"><h2>Top skills for you</h2>
+<section class="about" id="aboutme"><h2>About me</h2>
+<p>Hi, I’m Carlton. I’ve just completed my BCA at Voorhees College and I’m looking for my first role in IT Support or on a Service Desk.</p>
+<p>I’ve worked with databases during my internship at AdroIT Technologies, built a service desk demo called SyncDesk, and learned Python, SQL and Office tools along the way. I speak four languages, which helps me explain things to different people.</p>
+<p class="tip">Tap any card below to read more.</p></section>
+
+<section id="skills"><h2>What I can do</h2>
 <div class="row">
 <div class="card a"><span class="tag">SUPPORT</span><h3>Troubleshooting</h3><p>Finding the cause of a problem and fixing it.</p></div>
 <div class="card b"><span class="tag">TOOLS</span><h3>MS Office Suite</h3><p>Word, Excel and PowerPoint. Also Canva, Git and VS Code.</p></div>
@@ -93,8 +166,10 @@ body:not(.in) #site{display:none}
 <div class="row">
 <a class="card wide a" href="https://carltonaprakash.github.io/syncdesk-itsm-demo/" target="_blank" rel="noopener"><span class="tag">LIVE DEMO</span><h3>SyncDesk: ServiceNow + Jira workflow</h3><p>A service desk demo that joins ServiceNow-style incident handling with Jira-style issue tracking in one employee website. An L1 agent can escalate an incident to a linked Jira issue, and the status syncs back automatically. Includes a dashboard, ticket queue, SLA heatmap, ticket ageing and notifications.</p><p>Demo login: admin / admin</p><span class="hint">Open the demo</span></a>
 <a class="card wide b" href="https://claude.ai/artifact/P7Y6xFVHR2RaYDnJdYnMn7" target="_blank" rel="noopener"><span class="tag">DOCUMENT</span><h3>SyncDesk: Project Overview</h3><p>The problem, how ServiceNow and Jira compare, the workflow, features, SLA rules, scope and next steps for the SyncDesk project.</p><span class="hint">Read the overview</span></a>
-<div class="card c"><span class="tag">NEW</span><h3>IT Service Desk &amp; Troubleshooting Knowledge Base</h3><p>Common issues with clear fixes.</p></div>
-<a class="card d" href="https://carlton-prakash.tiiny.site/"><span class="tag">WEB</span><h3>Portfolio Site</h3><p>My one-page IT Support portfolio.</p></a>
+<div class="card d"><span class="tag">PROJECT</span><h3>Attendance Management System</h3><p>Automated attendance tracking and reports.</p></div>
+<div class="card e"><span class="tag">PROJECT</span><h3>Stock Market Prediction</h3><p>Deep learning models with news sentiment.</p></div>
+
+
 </div></section>
 
 <section id="certs"><h2>Certifications</h2>
@@ -113,26 +188,92 @@ body:not(.in) #site{display:none}
 <div class="row">
 <a class="card a" href="mailto:Carltonaprakash@gmail.com"><span class="tag">EMAIL</span><h3>Send an email</h3><p>Carltonaprakash@gmail.com</p></a>
 <a class="card b" href="https://www.linkedin.com/in/carltonaprakash"><span class="tag">LINKEDIN</span><h3>Connect with me</h3><p>linkedin.com/in/carltonaprakash</p></a>
+<a class="card c" href="tel:+919513055411"><span class="tag">PHONE</span><h3>Call me</h3><p>+91 95130 55411</p></a>
 </div></section>
 
+<section class="about" id="note"><h2>A note from me</h2><div class="quote"><p id="notetext"></p></div></section>
+
 <footer>© 2026 Carlton Anthony Prakash</footer>
+<div id="modal" role="dialog" aria-modal="true"><div class="mbox"><h3></h3><p></p><button>Close</button></div></div>
+<script>
+(function(){
+var M={"Troubleshooting":"When something stops working, I find out what the person was trying to do, then narrow down the cause step by step. I explain the fix in plain words so they know what to do if it happens again.",
+"MS Office Suite":"I use Word, Excel and PowerPoint for documents, data and presentations, and Canva for design. I also use Git and VS Code for my coding work.",
+"MySQL and Access":"I write SQL queries and have worked with MySQL and Microsoft Access. At my internship I used databases to clean, organise and validate data, and my Attendance Management System was built on Access.",
+"Python, C++ and C":"Python is the language I use most. I used it in my data science courses and in my stock prediction project. I also know C++ and C, and basic HTML.",
+"Planning and Teamwork":"My strengths are time management, task delegation, project planning and Agile awareness. I enjoy turning requirements into clear results while working with a team.",
+"Four languages":"I speak English and Hindi fluently, and Kannada and Tamil in conversation. In support, people explain problems best in their own language, so this helps.",
+"Data Science Intern, AdroIT Technologies":"Through Oracle University’s Naan Mudhalvan program, I worked at AdroIT Technologies Innovative Solutions. I worked with databases to clean, organise and validate data, and fixed data issues so workflows stayed accurate. I also worked with a team on real-world projects, turning requirements into clear, usable results.",
+"BCA, Voorhees College":"I completed my Bachelor of Computer Applications from 2023 to 2026. It gave me a strong base in databases, programming and systems, and I added to it with Oracle, Cambridge and Infosys Springboard courses.",
+"Attendance Management System":"I built an automated attendance tracking system using C#.NET, ASP.NET and Microsoft Access. It manages employee profiles and generates automated reports that make performance appraisals simpler.",
+"Stock Market Prediction":"I built LSTM and Transformer deep learning models to predict stock prices, and improved them with NLP sentiment analysis of news and social media data."};
+var m=document.getElementById("modal"),t=m.querySelector("h3"),b=m.querySelector("p"),x=m.querySelector("button"),last;
+function shut(){m.classList.remove("open");if(last)last.focus()}
+document.querySelectorAll("div.card").forEach(function(c){var h=c.querySelector("h3"),k=h&&h.textContent.trim();if(!M[k])return;
+c.tabIndex=0;c.setAttribute("role","button");c.style.cursor="pointer";
+var open=function(){last=c;t.textContent=k;b.textContent=M[k];m.classList.add("open");x.focus()};
+c.onclick=open;c.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}}});
+x.onclick=shut;m.onclick=function(e){if(e.target===m)shut()};
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&m.classList.contains("open"))shut()});
+})();
+</script>
 </div>
 <script>
 (function(){
-var P=[["Recruiter","#e50914"],["Hiring Manager","#0f7bc4"],["Fellow Techie","#2e9e5b"],["Guest","#e0a31b"]];
+var D="#111";
+var ACC={
+recruiter:'<path d="M22 50 Q22 14 50 14 Q78 14 78 50" stroke="'+D+'" stroke-width="5" fill="none"/><rect x="16" y="42" width="11" height="20" rx="5" fill="'+D+'"/><rect x="73" y="42" width="11" height="20" rx="5" fill="'+D+'"/><path d="M22 60 Q24 78 42 78" stroke="'+D+'" stroke-width="4" fill="none"/><circle cx="44" cy="78" r="4" fill="'+D+'"/>',
+manager:'<rect x="22" y="32" width="24" height="15" rx="5" fill="'+D+'"/><rect x="54" y="32" width="24" height="15" rx="5" fill="'+D+'"/><path d="M46 38 H54" stroke="'+D+'" stroke-width="3"/><rect x="45" y="80" width="10" height="6" rx="2" fill="'+D+'"/><path d="M45 86 H55 L58 100 H42 Z" fill="'+D+'"/>',
+techie:'<circle cx="33" cy="40" r="13" fill="none" stroke="'+D+'" stroke-width="3.5"/><circle cx="67" cy="40" r="13" fill="none" stroke="'+D+'" stroke-width="3.5"/><path d="M46 40 H54" stroke="'+D+'" stroke-width="3.5"/><text x="50" y="94" text-anchor="middle" font-family="monospace" font-weight="700" font-size="15" fill="#fff">&lt;/&gt;</text>',
+guest:'<path d="M55 70 V79 Q61 87 67 79 V66 Z" fill="#ff6b81"/><path d="M24 28 Q50 -6 76 28 Z" fill="'+D+'"/><rect x="52" y="25" width="38" height="7" rx="3.5" fill="'+D+'"/>'
+};
+var P=[["Recruiter","#e50914","recruiter"],["Hiring Manager","#0f7bc4","manager"],["Fellow Techie","#2e9e5b","techie"],["Guest","#e0a31b","guest"]];
+var ORDER={
+recruiter:["note","skills","experience","certs","projects","aboutme","contact"],
+manager:["note","experience","projects","skills","certs","aboutme","contact"],
+techie:["projects","skills","experience","certs","aboutme","contact"],
+guest:["aboutme","skills","experience","projects","certs","contact"]};
+var META={recruiter:"Service Desk and IT Support roles",manager:"IT Support and Operations",techie:"SyncDesk, Python and SQL",guest:"BCA 2026 | IT Support & Operations"};
+var NOTE={
+recruiter:"Hi, I\u2019m Carlton. I\u2019ve just completed my BCA and I\u2019m looking for my first role on a Service Desk or in IT Support. When something breaks, I find out what the person was trying to do, narrow down the cause, and explain the fix in plain words. I built SyncDesk to show how an L1 agent can escalate an incident to a linked Jira issue and see the status sync back. I speak English, Hindi, Kannada and Tamil, which helps me talk with different people. I\u2019d love to chat about how I can help your team.",
+manager:"I\u2019m a BCA graduate aiming for IT Support and Operations. SyncDesk shows how I think about incidents, escalation and SLAs. I learn quickly and work well with a team."};
 var list=document.getElementById("plist"),splash=document.getElementById("splash"),prof=document.getElementById("profiles"),shown=false;
+var note=document.getElementById("note"),notetext=document.getElementById("notetext"),site=document.getElementById("site");
+function applyView(k){
+var o=ORDER[k];
+site.querySelectorAll(":scope > section").forEach(function(sec){sec.style.order=99});
+o.forEach(function(id,i){var el=document.getElementById(id);if(el)el.style.order=i+2});
+site.querySelector("nav").style.order=0;site.querySelector("header").style.order=1;site.querySelector("footer").style.order=100;
+if(NOTE[k]){notetext.textContent=NOTE[k];note.classList.add("on")}else note.classList.remove("on");
+document.getElementById("metaspan").textContent=META[k];
+document.body.setAttribute("data-profile",k)}
 P.forEach(function(p){
 var b=document.createElement("button");b.className="pf";
-b.innerHTML='<svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="'+p[1]+'"/><circle cx="33" cy="40" r="6" fill="#fff"/><circle cx="67" cy="40" r="6" fill="#fff"/><path d="M26 62 Q50 84 74 62" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/></svg>'+p[0];
-b.onclick=function(){prof.classList.remove("show");document.body.classList.add("in");window.scrollTo(0,0)};
+b.innerHTML='<svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="'+p[1]+'"/><circle cx="33" cy="40" r="6" fill="#fff"/><circle cx="67" cy="40" r="6" fill="#fff"/><path d="M26 62 Q50 84 74 62" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/>'+ACC[p[2]]+'</svg>'+p[0];
+b.onclick=function(){applyView(p[2]);prof.classList.remove("show");document.body.classList.add("in");window.scrollTo(0,0)};
 list.appendChild(b);
 });
+document.getElementById("switch").onclick=function(){document.body.classList.remove("in");prof.classList.add("show");list.firstChild.focus()};
 function showProfiles(){if(shown)return;shown=true;splash.classList.add("gone");prof.classList.add("show");list.firstChild.focus()}
-function sound(){try{var C=new (window.AudioContext||window.webkitAudioContext)(),t=C.currentTime;
-function n(f,s,d,v){var o=C.createOscillator(),g=C.createGain();o.type="sine";o.frequency.setValueAtTime(f,s);o.frequency.exponentialRampToValueAtTime(f*.7,s+d);g.gain.setValueAtTime(.0001,s);g.gain.exponentialRampToValueAtTime(v,s+.03);g.gain.exponentialRampToValueAtTime(.0001,s+d);o.connect(g);g.connect(C.destination);o.start(s);o.stop(s+d)}
-n(110,t,.5,.6);n(220,t,.4,.2);n(98,t+.55,1.9,.7);n(49,t+.55,1.9,.7);n(196,t+.55,1.5,.18)}catch(e){}}
-document.getElementById("start").onclick=function(){splash.classList.add("go");sound();setTimeout(showProfiles,2700)};
+function sound(){try{var C=new (window.AudioContext||window.webkitAudioContext)();if(C.resume)C.resume();var t=C.currentTime+.05,M=C.createDynamicsCompressor(),mg=C.createGain();mg.gain.value=1.8;M.connect(mg);mg.connect(C.destination);
+function n(f,s,d,v,ty){var o=C.createOscillator(),g=C.createGain();o.type=ty||"sine";o.frequency.setValueAtTime(f,s);o.frequency.exponentialRampToValueAtTime(f*.7,s+d);g.gain.setValueAtTime(.0001,s);g.gain.exponentialRampToValueAtTime(v,s+.03);g.gain.exponentialRampToValueAtTime(.0001,s+d);o.connect(g);g.connect(M);o.start(s);o.stop(s+d)}
+n(55,t,.7,.9);n(110,t,.7,.5,"sawtooth");n(220,t,.6,.5,"triangle");n(440,t,.4,.3,"triangle");n(49,t+.6,2.2,1);n(98,t+.6,2.2,.45,"sawtooth");n(196,t+.6,2,.6,"triangle");n(392,t+.6,1.6,.35,"triangle")}catch(e){}}
+function tudum(){try{var C=new (window.AudioContext||window.webkitAudioContext)();if(C.resume)C.resume();var t=C.currentTime+.35;
+var out=C.createGain();out.gain.value=1.4;var cp=C.createDynamicsCompressor();
+var len=Math.floor(C.sampleRate*2.2),ir=C.createBuffer(2,len,C.sampleRate);for(var ch=0;ch<2;ch++){var dd=ir.getChannelData(ch);for(var i=0;i<len;i++)dd[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.5)}
+var rv=C.createConvolver();rv.buffer=ir;var rg=C.createGain();rg.gain.value=.5;
+out.connect(cp);out.connect(rv);rv.connect(rg);rg.connect(cp);cp.connect(C.destination);
+function thump(s,f0,f1,d,v){var o=C.createOscillator(),g=C.createGain();o.frequency.setValueAtTime(f0,s);o.frequency.exponentialRampToValueAtTime(f1,s+d*.6);g.gain.setValueAtTime(v,s);g.gain.exponentialRampToValueAtTime(.001,s+d);o.connect(g);g.connect(out);o.start(s);o.stop(s+d)}
+function pad(s,f,d,v){[-6,0,6].forEach(function(dt){var o=C.createOscillator(),fl=C.createBiquadFilter(),g=C.createGain();o.type="sawtooth";o.frequency.value=f;o.detune.value=dt;fl.type="lowpass";fl.frequency.setValueAtTime(200,s);fl.frequency.exponentialRampToValueAtTime(1800,s+d*.35);fl.frequency.exponentialRampToValueAtTime(300,s+d);g.gain.setValueAtTime(.001,s);g.gain.exponentialRampToValueAtTime(v,s+.06);g.gain.exponentialRampToValueAtTime(.001,s+d);o.connect(fl);fl.connect(g);g.connect(out);o.start(s);o.stop(s+d)})}
+thump(t,180,50,.7,1.2);pad(t,73.4,.7,.25);
+thump(t+.55,200,42,1.4,1.4);pad(t+.55,73.4,2.4,.3);pad(t+.55,110,2.4,.22);pad(t+.55,146.8,2.4,.18);pad(t+.55,220,2.4,.12)}catch(e){}}
+document.getElementById("start").onclick=function(){splash.classList.add("go");var au=new Audio("tudum.mp3");au.play().catch(tudum);setTimeout(showProfiles,4700)};
 document.getElementById("skip").onclick=showProfiles;
+(function(){var lg=document.querySelector(".splash-logo"),i=0,cl=["#e50914","#ff5a1f","#2f6bff","#9b3cff","#1fd1c6","#ff2d6f"];
+lg.innerHTML=lg.dataset.text.split(" ").map(function(w){return '<span class="w">'+w.split("").map(function(ch){return '<span class="l" style="--i:'+(i++)+'">'+ch+'</span>'}).join("")+'</span>'}).join(" ");
+var sk=document.createElement("div");sk.className="streaks";sk.setAttribute("aria-hidden","true");
+for(var k=0;k<36;k++){var s=document.createElement("span");s.style.setProperty("--c",cl[k%6]);s.style.height=(35+Math.random()*60)+"%";sk.appendChild(s)}
+splash.appendChild(sk)})();
 })();
 </script>
 </body>
